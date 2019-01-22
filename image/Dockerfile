@@ -30,6 +30,13 @@ RUN echo "path-include /usr/share/doc/krb5*" >> /etc/dpkg/dpkg.cfg.d/docker && a
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    python2.7 \
+    libcurl4-nss-dev \
+    libsvn-dev \
+    sudo && \
+    unset DEBIAN_FRONTEND
+
 # Add service directory to /container/service
 ADD service /container/service
 
